@@ -18,6 +18,7 @@ export const authOptions: NextAuthOptions = {
         return {
           id: profile.data.id,
           username: profile.data.username,
+          wallet_address: wallet.address(),
           // username:
           //   profile.data.username + Math.floor(Math.random() * 1000000000),
           name: profile.data.name ?? "",
@@ -51,6 +52,7 @@ export const authOptions: NextAuthOptions = {
           withdrawAddress: user.withdrawAddress,
           hasClaimedFreeSpin: user.hasClaimedFreeSpin,
           hasClaimedFreeSpinJacob: user.hasClaimedFreeSpinJacob,
+          wallet_address: user.wallet_address,
         },
       };
     },

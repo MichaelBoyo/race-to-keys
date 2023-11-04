@@ -21,6 +21,7 @@ model Account {
   scope             String?
   id_token          String? @db.Text
   session_state     String?
+  wallet_address    String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -61,9 +62,6 @@ model User {
 
   withdrawAddress String?
 
-  referal  referral?  @relation("referrer")
-  referals referral[] @relation("referred_by")
-
   hasCompletedReferral Boolean @default(false)
   is_created           Boolean @default(false)
   is_banned            Boolean @default(false)
@@ -74,120 +72,5 @@ model User {
   accounts Account[]
   sessions Session[]
 
-  following      follow[]     @relation("following")
-  followers      follow[]     @relation("follower")
-  likes_sent     like[]       @relation("sender")
-  likes_received like[]       @relation("recipient")
-  posts          post[]
-  spins          spin[]
-  airdrops       airdrop[]
-  daily_tasks    daily_task[]
-
   @@map("user")
-}
-
-model referral {
-  referrer    User   @relation("referrer", fields: [referrer_id], references: [id], onDelete: Cascade)
-  referrer_id String @unique
-
-  referred_by    User   @relation("referred_by", fields: [referred_by_id], references: [id], onDelete: Cascade)
-  referred_by_id String
-
-  is_claimed Boolean @default(false)
-
-  created_at DateTime @default(now())
-
-  @@index(referred_by_id)
-}
-
-model follow {
-  id String @id @default(cuid())
-
-  follower    User   @relation("follower", fields: [follower_id], references: [id], onDelete: Cascade)
-  follower_id String
-
-  following    User   @relation("following", fields: [following_id], references: [id], onDelete: Cascade)
-  following_id String
-
-  created_at DateTime @default(now())
-
-  @@unique([follower_id, following_id])
-  @@index([follower_id])
-  @@index([following_id])
-}
-
-model post {
-  id String @id @default(cuid())
-
-  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id String
-
-  body String
-
-  is_comment Boolean @default(false)
-
-  created_at DateTime @default(now())
-
-  @@index([user_id])
-}
-
-model like {
-  id String @id @default(cuid())
-
-  sender    User   @relation("sender", fields: [sender_id], references: [id])
-  sender_id String
-
-  recipient    User   @relation("recipient", fields: [recipient_id], references: [id])
-  recipient_id String
-
-  contract_post_id Int
-
-  created_at DateTime @default(now())
-
-  @@unique([sender_id, recipient_id, contract_post_id])
-  @@index([sender_id])
-  @@index([recipient_id])
-  @@map("like")
-}
-
-model spin {
-  id String @id @default(cuid())
-
-  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id String
-
-  created_at DateTime @default(now())
-
-  prize Int?
-
-  has_spun Boolean   @default(false)
-  spun_at  DateTime?
-
-  tx_hash String?
-
-  has_exchanged Boolean @default(false)
-
-  @@index([user_id])
-}
-
-model daily_task {
-  id String @id @default(cuid())
-
-  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id String
-
-  created_at DateTime @default(now())
-
-  @@index([user_id])
-}
-
-model airdrop {
-  id String @id @default(cuid())
-
-  user    User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
-  user_id String
-
-  created_at DateTime @default(now())
-
-  @@index([user_id])
 }

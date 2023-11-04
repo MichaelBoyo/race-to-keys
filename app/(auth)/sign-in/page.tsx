@@ -11,7 +11,15 @@ export default function Login() {
       {!session ? (
         <>
           Not signed in <br />
-          <button onClick={() => signIn("twitter")}>Sign in</button>
+          <button
+            onClick={() =>
+              signIn("twitter", {
+                callbackUrl: "/",
+              })
+            }
+          >
+            Sign in
+          </button>
         </>
       ) : (
         <>
