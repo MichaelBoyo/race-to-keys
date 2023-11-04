@@ -21,7 +21,6 @@ model Account {
   scope             String?
   id_token          String? @db.Text
   session_state     String?
-  wallet_address    String?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -68,6 +67,7 @@ model User {
 
   hasClaimedFreeSpin      Boolean @default(false)
   hasClaimedFreeSpinJacob Boolean @default(false)
+  wallet_address          String?
 
   accounts Account[]
   sessions Session[]

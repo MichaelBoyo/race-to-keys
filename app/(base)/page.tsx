@@ -1,17 +1,27 @@
 import Stat from "@/components/Stat";
 import { getSession } from "@/lib/actions";
-import { getAptosBalance, getKeySubjects } from "@/lib/contract";
+import {
+  getAptosBalance,
+  getKeyBalance,
+  getKeySubjects,
+  getTradeHistory,
+} from "@/lib/contract";
+import { Deposit } from "@/components/Deposit";
+import { TransactionRow } from "@/components/TransactionRow";
+import { TransactionTable } from "@/components/TransactionTable";
+
 const Dash = async () => {
   const session = await getSession();
-  console.log("session", { session });
+  if (!session || !session.user) return <div>loading...</div>;
   const balance = await getAptosBalance(session?.user.wallet_address);
-  console.log("balance", balance);
-
   const kkeySubs = await getKeySubjects(session?.user);
+  const tradeHist = await getTradeHistory();
   return (
     <div>
-      {JSON.stringify(kkeySubs)}
-      <Stat balance={balance} />
+      <Stat header=" Current  balance" balance={balance} />
+      <Stat header=" Current  balance" balance={balance} />
+      <Deposit user={session?.user!} addresses={kkeySubs} />
+      <TransactionTable transactions={tradeHist} />
     </div>
   );
 };

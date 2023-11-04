@@ -18,7 +18,7 @@ export const authOptions: NextAuthOptions = {
         return {
           id: profile.data.id,
           username: profile.data.username,
-          wallet_address: wallet.address(),
+          wallet_address: wallet.address().hex(),
           // username:
           //   profile.data.username + Math.floor(Math.random() * 1000000000),
           name: profile.data.name ?? "",

@@ -1,32 +1,50 @@
+"use client";
+
+import { useState } from "react";
+import { User } from "@/lib/types";
 import { buyKeys } from "@/lib/contract";
-import { getSession } from "@/lib/actions";
-
-const Deposit = async () => {
-  const session = await getSession();
-
-  //   const [amount, setAmount] = useState(10);
-
-  if (!session) return null;
-  const handleDeposit = async (e: any) => {
+import { useRouter } from "next/navigation";
+type Props = {
+  addresses: {
+    address: string;
+    keys: number;
+  }[];
+  user: User;
+};
+export const Deposit = ({ addresses, user }: Props) => {
+  const [amount, setAmount] = useState(10);
+  const [address, setAddress] = useState(addresses[0].address);
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const res = await buyKeys(session?.user!, session?.user.privateKey, 10);
 
-    console.log("res", res);
+    console.log({ amount, address });
+    const res = await buyKeys(user, address, amount);
   };
+
   return (
-    <div>
-      <form onSubmit={handleDeposit}>
-        <input
-          //   value={amount}
-          //   onChange={(e) => setAmount(Number(e.target.value))}
-          type="number"
-          placeholder="Enter amount"
-          className="input input-bordered w-full max-w-xs"
-        />
-        <button className="btn btn-sm btn-success">deposit</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit}>
+      <input
+        value={amount}
+        onChange={(e) => setAmount(Number(e.target.value))}
+        type="text"
+        placeholder="Type here"
+        className="input input-bordered w-full max-w-xs"
+      />
+      <select
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+        className="select w-full max-w-xs"
+      >
+        <option disabled selected>
+          Pick your favorite Simpson
+        </option>
+        {addresses.map((address) => (
+          <option key={address.address}>{address.address}</option>
+        ))}
+      </select>
+      <button type="submit" className="btn btn-primary">
+        Buy keys
+      </button>
+    </form>
   );
 };
-
-export default Deposit;

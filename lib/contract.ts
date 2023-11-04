@@ -34,11 +34,12 @@ const TRANSACTION_OPTIONS = {
   gas_unit_price: "100",
 };
 
-export async function getAptosBalance(address: string) {
+export async function getAptosBalance(address: string): Promise<number> {
   try {
     const balance = await coinClient.checkBalance(address);
-    console.log("balance", balance);
-    return Number(balance) / 1_0000_0000;
+    const newb = Number(balance) / 1_0000_0000;
+    console.log("balance ==>", newb);
+    return newb;
   } catch (e) {
     console.log("error getting balance", e);
     return 0;
@@ -71,6 +72,8 @@ export async function buyKeys(
   const buyerAccount = new AptosAccount(
     new HexString(buyer.privateKey).toUint8Array()
   );
+
+  console.log("buyerAccount", { buyerAccount });
 
   await fundAccount(buyerAccount);
 
