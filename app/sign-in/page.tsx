@@ -1,15 +1,17 @@
 "use client";
 import { useSession, signIn, signOut } from "next-auth/react";
+import { json } from "stream/consumers";
 
 export default function Login() {
   const { data: session } = useSession();
 
   return (
     <main className="">
+      {JSON.stringify(session)}
       {!session ? (
         <>
           Not signed in <br />
-          <button onClick={() => signIn()}>Sign in</button>
+          <button onClick={() => signIn("twitter")}>Sign in</button>
         </>
       ) : (
         <>

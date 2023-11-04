@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { getServerSession } from "next-auth";
 
 import { NextAuthProvider } from "@/components/NextAuthProvide";
-import { authOptions } from "@/server/auth";
+import { getServerAuthSession } from "@/server/auth";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,7 +16,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
+  const session = await getServerAuthSession();
   return (
     <html data-theme="dark" lang="en">
       <body className={inter.className}>
