@@ -27,8 +27,7 @@ const Dash = async () => {
         wallet_address={wallerAddr}
         addresses={kkeySubs.map((k) => k.address)}
       />
-      <div className="divider"></div>
-      <TransactionTable transactions={tradeHist} />
+      {/* <TransactionTable transactions={tradeHist} /> */}
     </div>
   );
 };

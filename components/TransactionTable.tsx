@@ -24,14 +24,14 @@ export const TransactionTable = ({
 }) => {
   const [page, setPage] = useState(1);
   if (!transactions) return null;
-  const size = 10;
+  const size = 14;
 
   const totalPages = transactions.length / size;
   return (
-    <div className="h-full  flex flex-col justify-between ">
+    <div className="h-full  flex flex-col justify-between gap-3 pt-5 ">
       <p className="font-semibold text-3xl ">Transactions</p>
 
-      <div className=" max-h-[45vh]  max-w-[70vw] overflow-y-auto custom-scrollbar">
+      <div className=" max-h-[77vh]  max-w-[70vw] overflow-y-auto custom-scrollbar">
         <table className="table">
           <thead>
             <tr>
