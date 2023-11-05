@@ -20,7 +20,7 @@ export const SideBar = async () => {
         />
         <div className="flex gap-2">
           <p className="flex flex-col">
-            {user.name} <b>{user.username}</b>
+            {user.name} <b>@{user.username}</b>
           </p>
 
           <Logout />

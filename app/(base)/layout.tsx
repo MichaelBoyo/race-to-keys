@@ -21,9 +21,9 @@ export default async function RootLayout({
     <html data-theme="dark" lang="en">
       <body className={`${inter.className} h-screen  flex  justify-between`}>
         <SideBar />
-        <div className="overflow-hidden bg-base-200  ">
+        <div className=" flex flex-col justify-betweem  overflow-y-hidden h-screen bg-base-200  ">
           <NavBar />
-          <div className="max-w-[70vw]">{children}</div>
+          <div className="max-w-[70vw] grow px-5  ">{children}</div>
         </div>
         <RightBar />
       </body>

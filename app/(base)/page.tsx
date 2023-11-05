@@ -7,7 +7,6 @@ import {
   getOwnedCollections,
   getTradeHistory,
 } from "@/lib/contract";
-import { Deposit } from "@/components/Deposit";
 import { TransactionTable } from "@/components/TransactionTable";
 import KeysCollection from "@/components/KeysCollection";
 import Login from "../(auth)/sign-in/page";
@@ -15,22 +14,16 @@ import Login from "../(auth)/sign-in/page";
 const Dash = async () => {
   const session = await getSession();
   if (!session || !session.user) return <Login />;
-  const balance = await getAptosBalance(session?.user.wallet_address);
   const kkeySubs = await getKeySubjects(session?.user);
   const tradeHist = await getTradeHistory();
 
-  // const userCollections = await getOwnedCollections(session?.user);
-  // console.log("user collr", userCollections);
-
   return (
-    <div>
-      <Stat header=" Current  balance" value={`$ ${balance}`} />
-
-      <Deposit user={session?.user!} addresses={kkeySubs} />
+    <div className="p-2 h-full flex   flex-col justify-between">
       <KeysCollection
         wallet_address={session?.user.wallet_address}
         addresses={kkeySubs.map((k) => k.address)}
       />
+      <div className="divider"></div>
       <TransactionTable transactions={tradeHist} />
     </div>
   );

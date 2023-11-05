@@ -1,5 +1,8 @@
+"use client";
 import { ContractTradeEvent } from "@/lib/types";
 import { TransactionRow } from "./TransactionRow";
+import { Pagination } from "./Pagination";
+import { useState } from "react";
 const theads = [
   "-",
   "Version",
@@ -19,23 +22,34 @@ export const TransactionTable = ({
 }: {
   transactions: ContractTradeEvent[];
 }) => {
+  const [page, setPage] = useState(1);
   if (!transactions) return null;
+  const size = 10;
+
+  const totalPages = transactions.length / size;
   return (
-    <div className="max-h-[80vh] max-w-[70vw] overflow-y-auto custom-scrollbar">
-      <table className="table">
-        <thead>
-          <tr>
-            {theads.map((thead, index) => (
-              <th key={index}>{thead}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {transactions.map((trade, index) => (
-            <TransactionRow index={index} key={index} trade={trade} />
-          ))}
-        </tbody>
-      </table>
+    <div className="h-full relative ">
+      <p className="font-semibold text-3xl">Transaction History</p>
+
+      <div className=" max-h-[80%] max-w-[70vw] overflow-y-auto custom-scrollbar">
+        <table className="table">
+          <thead>
+            <tr>
+              {theads.map((thead, index) => (
+                <th key={index}>{thead}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {transactions
+              .slice((page - 1) * size, (page - 1) * size + size)
+              .map((trade, index) => (
+                <TransactionRow index={index} key={index} trade={trade} />
+              ))}
+          </tbody>
+        </table>
+      </div>
+      <Pagination totalPages={totalPages} page={page} setPage={setPage} />
     </div>
   );
 };

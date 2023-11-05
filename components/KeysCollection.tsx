@@ -7,9 +7,9 @@ type Props = {
 };
 const KeysCollection = async ({ addresses, wallet_address }: Props) => {
   return (
-    <div>
-      <h1>Your Collections Collection</h1>
-      <div>
+    <div className="flex flex-col gap-3">
+      <h1 className="font-semibold text-3xl">Your Collections </h1>
+      <div className="grid grid-cols-6 gap-5">
         {addresses.map(async (address, id) => {
           const bal = await getKeyBalance(wallet_address, address);
 
