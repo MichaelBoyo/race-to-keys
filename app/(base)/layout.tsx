@@ -19,13 +19,11 @@ export default async function RootLayout({
 }) {
   return (
     <html data-theme="dark" lang="en">
-      <body
-        className={`${inter.className} h-screen  flex w-screen max-w-screen justify-between`}
-      >
+      <body className={`${inter.className} h-screen  flex  justify-between`}>
         <SideBar />
-        <div className="overflow-hidden bg-base-200 grow ">
+        <div className="overflow-hidden bg-base-200  ">
           <NavBar />
-          {children}
+          <div className="max-w-[70vw]">{children}</div>
         </div>
         <RightBar />
       </body>

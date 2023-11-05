@@ -25,7 +25,7 @@ export const BuyAndSellClient = ({ keySubjects, user }: Props) => {
   };
 
   return (
-    <div className="  flex flex-col items-center justify-center">
+    <div className="  flex flex-col ">
       <input
         value={amount}
         onChange={(e) => setAmount(Number(e.target.value))}
@@ -33,24 +33,11 @@ export const BuyAndSellClient = ({ keySubjects, user }: Props) => {
         placeholder="Type here"
         className="input input-bordered "
       />
-      <DropDown />
-      <details className="dropdown">
-        <summary className="m-1 btn text-ellipsis overflow-hidden max-w-[100px]">
-          {address}
-        </summary>
-        <ul className="p-2  shadow menu dropdown-content z-[1] bg-base-100 rounded-box ">
-          {keySubjects.map((address) => (
-            <li
-              onClick={() => setAddress(address.address)}
-              key={address.address}
-            >
-              <p className="text-ellipsis overflow-hidden max-w-[100px]">
-                {address.address}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </details>
+      <DropDown
+        selected={address}
+        setSelected={setAddress}
+        items={keySubjects.map((address) => address.address)}
+      />
 
       <div className="flex gap-4">
         <button onClick={() => handleSubmit(true)} className="btn btn-accent">

@@ -5,18 +5,15 @@ import { cx } from "@/lib/cx";
 type Props = {
   items: string[];
   selected: string;
-  setSelected: () => void;
+  setSelected: (val: string) => void;
 };
-export default function DropDown({ items }: Props) {
+export default function DropDown({ items, selected, setSelected }: Props) {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
-          Options
-          <ChevronDownIcon
-            className="-mr-1 h-5 w-5 text-gray-400"
-            aria-hidden="true"
-          />
+        <Menu.Button className="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-base-100 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
+          <p className="text-ellipsis overflow-hidden max-w-full">{selected}</p>
+          <ChevronDownIcon className="-mr-1 h-5 w-5 " aria-hidden="true" />
         </Menu.Button>
       </div>
 
@@ -29,77 +26,24 @@ export default function DropDown({ items }: Props) {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md  shadow-lg ring-1 bg-base-100 ring-black ring-opacity-5 focus:outline-none">
           <div className="py-1">
             {items.map((item, index) => (
               <Menu.Item key={index}>
                 {({ active }) => (
                   <a
+                    onClick={() => setSelected(item)}
                     href="#"
                     className={cx(
-                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                      "block px-4 py-2 text-sm"
+                      active ? "bg-gray-400" : "",
+                      "block px-4 py-2 text-sm text-ellipsis overflow-hidden max-w-full"
                     )}
                   >
-                    Account settings
+                    {item}
                   </a>
                 )}
               </Menu.Item>
             ))}
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={cx(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
-                  )}
-                >
-                  Account settings
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={cx(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
-                  )}
-                >
-                  Support
-                </a>
-              )}
-            </Menu.Item>
-            <Menu.Item>
-              {({ active }) => (
-                <a
-                  href="#"
-                  className={cx(
-                    active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                    "block px-4 py-2 text-sm"
-                  )}
-                >
-                  License
-                </a>
-              )}
-            </Menu.Item>
-            <form method="POST" action="#">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="submit"
-                    className={cx(
-                      active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                      "block w-full px-4 py-2 text-left text-sm"
-                    )}
-                  >
-                    Sign out
-                  </button>
-                )}
-              </Menu.Item>
-            </form>
           </div>
         </Menu.Items>
       </Transition>
