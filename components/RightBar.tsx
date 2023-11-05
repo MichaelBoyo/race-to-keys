@@ -1,4 +1,4 @@
-import { getSession } from "@/lib/actions";
+import { getSession, getWalletAddr } from "@/lib/actions";
 import Image from "next/image";
 import { RecentTransactions } from "./RecentTransactions";
 import { FavouriteKeys } from "./FavouriteKeys";
@@ -11,6 +11,8 @@ const RightBar = async () => {
 
   const { user } = session;
   const keySubs = await getKeySubjects();
+
+  const walletAddress = getWalletAddr(user.privateKey);
   return (
     <div className="bg-base-100 max-w-[300px] min-w-[100px] flex flex-col justify-between">
       <div className="flex justify-between w-full  border-b h-[73px]  p-2">
@@ -27,7 +29,7 @@ const RightBar = async () => {
       </div>
 
       <BuyAndSellClient
-        walletAddress={user.wallet_address}
+        walletAddress={walletAddress}
         user={user}
         keySubjects={keySubs}
       />
@@ -35,7 +37,7 @@ const RightBar = async () => {
       <RecentTransactions />
 
       <FavouriteKeys
-        wallet_address={user.wallet_address}
+        wallet_address={walletAddress}
         keySubs={keySubs.map((v) => v.address)}
       />
     </div>

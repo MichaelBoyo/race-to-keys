@@ -132,7 +132,7 @@ export const BuyAndSellClient = ({
             )}
           </button>
 
-          <button onClick={() => handleSubmit()} className="btn btn-error">
+          <button onClick={() => handleSubmit()} className="btn btn-error ">
             Sell
             {sellLoading ? (
               <span className="loading loading-spinner loading-xs"></span>

@@ -1,4 +1,4 @@
-import { getSession } from "@/lib/actions";
+import { getSession, getWalletAddr } from "@/lib/actions";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 import { AiOutlineBell } from "react-icons/ai";
 import { Search } from "./Search";
@@ -8,7 +8,8 @@ export const NavBar = async () => {
   if (!session?.user) return null;
 
   const { user } = session;
-  const balance = await getAptosBalance(user.wallet_address);
+  const walletAddress = getWalletAddr(user.privateKey);
+  const balance = await getAptosBalance(walletAddress);
   return (
     <div className="bg-base-100 p-3  border-l border-b  items-center border-r h-[73px]  flex justify-between w-full">
       <p></p>

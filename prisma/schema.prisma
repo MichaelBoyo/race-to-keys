@@ -68,7 +68,6 @@ model User {
 
   hasClaimedFreeSpin      Boolean @default(false)
   hasClaimedFreeSpinJacob Boolean @default(false)
-  wallet_address          String?
 
   accounts Account[]
   sessions Session[]

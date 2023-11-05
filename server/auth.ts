@@ -19,7 +19,6 @@ export const authOptions: NextAuthOptions = {
         return {
           id: profile.data.id,
           username: profile.data.username,
-          wallet_address: wallet.address().hex(),
 
           name: profile.data.name ?? "",
           image: profile.data.profile_image_url ?? "",
@@ -53,7 +52,6 @@ export const authOptions: NextAuthOptions = {
           withdrawAddress: user.withdrawAddress,
           hasClaimedFreeSpin: user.hasClaimedFreeSpin,
           hasClaimedFreeSpinJacob: user.hasClaimedFreeSpinJacob,
-          wallet_address: user.wallet_address,
         },
       };
     },

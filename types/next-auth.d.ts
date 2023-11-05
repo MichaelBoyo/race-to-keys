@@ -21,6 +21,5 @@ declare module "next-auth" {
     hasClaimedFreeSpin: PrismaUser["hasClaimedFreeSpin"];
     hasClaimedFreeSpinJacob: PrismaUser["hasClaimedFreeSpinJacob"];
     publicKey: PrismaUser["publicKey"];
-    wallet_address: PrismaUser["wallet_address"];
   }
 }

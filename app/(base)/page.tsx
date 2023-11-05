@@ -1,4 +1,4 @@
-import { getSession } from "@/lib/actions";
+import { getSession, getWalletAddr } from "@/lib/actions";
 import { getKeySubjects, getTradeHistory } from "@/lib/contract";
 import { TransactionTable } from "@/components/TransactionTable";
 import KeysCollection from "@/components/KeysCollection";
@@ -10,10 +10,11 @@ const Dash = async () => {
   const kkeySubs = await getKeySubjects(session?.user);
   const tradeHist = await getTradeHistory();
 
+  const wallerAddr = getWalletAddr(session?.user.privateKey);
   return (
     <div className="p-2 h-full  flex  flex-col justify-between">
       <KeysCollection
-        wallet_address={session?.user.wallet_address}
+        wallet_address={wallerAddr}
         addresses={kkeySubs.map((k) => k.address)}
       />
       <div className="divider"></div>

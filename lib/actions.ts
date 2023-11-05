@@ -1,20 +1,13 @@
 import { authOptions } from "@/server/auth";
 import { getServerSession } from "next-auth";
 import { User } from "./types";
+import { AptosAccount, HexString } from "aptos";
 
 export async function getSession() {
   return await getServerSession(authOptions);
 }
 
-export async function getMe() {
-  const session = await getServerSession(authOptions);
-
-  return session
-    ? {
-        username: session.user.username,
-        name: session.user.name,
-        imgSrc: session.user.image.replace("_normal", ""),
-        privateKey: session.user.privateKey,
-      }
-    : undefined;
+export function getWalletAddr(privateKey: string) {
+  const wallet = new AptosAccount(new HexString(privateKey).toUint8Array());
+  return wallet.address().hex();
 }
