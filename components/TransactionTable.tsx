@@ -21,7 +21,7 @@ export const TransactionTable = ({
 }) => {
   if (!transactions) return null;
   return (
-    <div className="max-h-[80vh] overflow-auto custom-scrollbar">
+    <div className="max-h-[80vh] max-w-[70vw] overflow-y-auto custom-scrollbar">
       <table className="table">
         <thead>
           <tr>

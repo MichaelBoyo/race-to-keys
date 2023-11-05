@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 
 import { SideBar } from "@/components/SideBar";
+import { NavBar } from "@/components/NavBar";
+import RightBar from "@/components/RightBar";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -17,11 +19,15 @@ export default async function RootLayout({
 }) {
   return (
     <html data-theme="dark" lang="en">
-      <body className={inter.className}>
-        <main className="flex">
-          <SideBar />
+      <body
+        className={`${inter.className} h-screen  flex w-screen max-w-screen justify-between`}
+      >
+        <SideBar />
+        <div className="overflow-hidden bg-base-200 grow ">
+          <NavBar />
           {children}
-        </main>
+        </div>
+        <RightBar />
       </body>
     </html>
   );

@@ -1,5 +1,7 @@
-import React from "react";
-
 export const SideBar = () => {
-  return <div></div>;
+  return (
+    <div className="bg-base-100 min-w-[200px]">
+      <p>Overmind</p>
+    </div>
+  );
 };
