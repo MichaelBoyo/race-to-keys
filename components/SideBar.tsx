@@ -12,7 +12,7 @@ export const SideBar = async () => {
 
   return (
     <div className="bg-base-100 w-max  pt-2 flex flex-col items-center justify-between ">
-      <div>
+      <div className="flex flex-col gap-4">
         <pre className="text-3xl">Havit Labs</pre>
 
         <div className="flex flex-col gap-4">
