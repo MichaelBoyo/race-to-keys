@@ -58,6 +58,7 @@ model User {
   image         String?
   created_at    DateTime  @default(now())
   privateKey    String
+  publicKey     String
 
   withdrawAddress String?
 
