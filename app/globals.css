@@ -30,6 +30,9 @@
 .btn {
   @apply normal-case;
 }
+.active-border {
+  @apply border-primary !important;
+}
 
 [data-theme="dark"] .border-l,
 [data-theme="dark"] .border-b,
