@@ -1,9 +1,9 @@
 import { getSession } from "@/lib/actions";
 import Image from "next/image";
-import { BuyAndSell } from "./BuyAndSell";
 import { RecentTransactions } from "./RecentTransactions";
 import { FavouriteKeys } from "./FavouriteKeys";
 import { getKeySubjects } from "@/lib/contract";
+import { BuyAndSellClient } from "./BuyAndSellClient";
 
 const RightBar = async () => {
   const session = await getSession();
@@ -25,7 +25,12 @@ const RightBar = async () => {
           alt="user img"
         />
       </div>
-      <BuyAndSell />
+
+      <BuyAndSellClient
+        walletAddress={user.wallet_address}
+        user={user}
+        keySubjects={keySubs}
+      />
 
       <RecentTransactions />
 

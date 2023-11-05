@@ -8,7 +8,6 @@ export const ThemeSwitcher = () => {
     document.documentElement.getAttribute("data-theme") === "dark"
   );
   const handleClick = () => {
-    console.log("clicked");
     setIsDark(!isDark);
   };
   useEffect(() => {

@@ -27,7 +27,9 @@ export const TransactionRow = ({
       ))}
       {Object.entries(trade.data).map(([key, value]) => (
         <>
-          {excludeList.includes(key) ? null : (
+          {excludeList.includes(key) ? (
+            <div key={key}></div>
+          ) : (
             <td className="text-center " key={key}>
               {typeof value === "boolean" ? (
                 <>
@@ -38,14 +40,20 @@ export const TransactionRow = ({
                         <FaArrowTrendUp />
                       </p>
                     ) : (
-                      <p className="border gap-1 w-max  p-1 rounded-full bg-error text-black font-semibold">
+                      <p
+                        key={key}
+                        className="border gap-1 w-max  p-1 rounded-full bg-error text-black font-semibold"
+                      >
                         <FaArrowTrendDown />
                       </p>
                     )}
                   </div>
                 </>
               ) : (
-                <p className="text-ellipsis overflow-hidden max-w-[100px]">
+                <p
+                  key={key}
+                  className="text-ellipsis overflow-hidden max-w-[100px]"
+                >
                   {value}
                 </p>
               )}
