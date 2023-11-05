@@ -23,7 +23,7 @@ export default async function RootLayout({
         <SideBar />
         <div className=" flex flex-col justify-betweem  overflow-y-hidden h-screen bg-base-200  ">
           <NavBar />
-          <div className="max-w-[70vw] grow px-5  ">{children}</div>
+          <div className="max-w-[70vw]  grow px-5  ">{children}</div>
         </div>
         <RightBar />
       </body>

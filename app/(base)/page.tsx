@@ -1,24 +1,17 @@
-import Stat from "@/components/Stat";
 import { getSession } from "@/lib/actions";
-import {
-  getAptosBalance,
-  getKeyBalance,
-  getKeySubjects,
-  getOwnedCollections,
-  getTradeHistory,
-} from "@/lib/contract";
+import { getKeySubjects, getTradeHistory } from "@/lib/contract";
 import { TransactionTable } from "@/components/TransactionTable";
 import KeysCollection from "@/components/KeysCollection";
-import Login from "../(auth)/sign-in/page";
+import { redirect } from "next/navigation";
 
 const Dash = async () => {
   const session = await getSession();
-  if (!session || !session.user) return <Login />;
+  if (!session || !session.user) return redirect("/sign-in");
   const kkeySubs = await getKeySubjects(session?.user);
   const tradeHist = await getTradeHistory();
 
   return (
-    <div className="p-2 h-full flex   flex-col justify-between">
+    <div className="p-2 h-full    flex-col justify-between">
       <KeysCollection
         wallet_address={session?.user.wallet_address}
         addresses={kkeySubs.map((k) => k.address)}

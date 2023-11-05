@@ -1,6 +1,6 @@
 import { withAuth } from "next-auth/middleware";
 
-const protetedRoutes = ["/dashboard", "/"];
+const protetedRoutes = ["", ""];
 
 export default withAuth(function middleware(req) {}, {
   callbacks: {
