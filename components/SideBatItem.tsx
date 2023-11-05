@@ -13,7 +13,7 @@ export const SideBarItem = (item: IconProps) => {
     <Link
       key={item.name}
       href={item.path}
-      className={`  ${
+      className={` w-max p-3  ${
         pathName === item.path ? " border  active-border " : ""
       } text-base-900 hover:text-base-800 flex  gap-1 rounded-lg items-center p-1`}
     >
