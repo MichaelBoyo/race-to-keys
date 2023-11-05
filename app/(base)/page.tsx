@@ -10,10 +10,11 @@ import {
 import { Deposit } from "@/components/Deposit";
 import { TransactionTable } from "@/components/TransactionTable";
 import KeysCollection from "@/components/KeysCollection";
+import Login from "../(auth)/sign-in/page";
 
 const Dash = async () => {
   const session = await getSession();
-  if (!session || !session.user) return <div>loading...</div>;
+  if (!session || !session.user) return <Login />;
   const balance = await getAptosBalance(session?.user.wallet_address);
   const kkeySubs = await getKeySubjects(session?.user);
   const tradeHist = await getTradeHistory();

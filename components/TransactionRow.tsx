@@ -1,5 +1,5 @@
 import { ContractTradeEvent } from "@/lib/types";
-import { FaArrowTrendUp } from "react-icons/fa6";
+import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
 const excludeList = ["new_supply", "creation_number"];
 export const TransactionRow = ({
   trade,
@@ -28,17 +28,21 @@ export const TransactionRow = ({
       {Object.entries(trade.data).map(([key, value]) => (
         <>
           {excludeList.includes(key) ? null : (
-            <td key={key}>
+            <td className="text-center " key={key}>
               {typeof value === "boolean" ? (
                 <>
-                  {value ? (
-                    <p className="border flex items-center gap-1 border-success w-max p-1 rounded-full bg-success text-black font-semibold">
-                      Buy
-                      <FaArrowTrendUp />
-                    </p>
-                  ) : (
-                    "Sell"
-                  )}
+                  <div className="flex w-full items-center gap-2 justify-center ">
+                    <pre>{value ? "Buy" : "Sell"}</pre>
+                    {value ? (
+                      <p className="border gap-1 w-max  p-1 rounded-full bg-accent text-black font-semibold">
+                        <FaArrowTrendUp />
+                      </p>
+                    ) : (
+                      <p className="border gap-1 w-max  p-1 rounded-full bg-error text-black font-semibold">
+                        <FaArrowTrendDown />
+                      </p>
+                    )}
+                  </div>
                 </>
               ) : (
                 <p className="text-ellipsis overflow-hidden max-w-[100px]">

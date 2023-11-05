@@ -27,6 +27,10 @@
   }
 }
 
+.btn {
+  @apply normal-case;
+}
+
 [data-theme="dark"] .border-l,
 [data-theme="dark"] .border-b,
 [data-theme="dark"] .border-t,
