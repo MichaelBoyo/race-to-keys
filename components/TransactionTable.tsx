@@ -1,6 +1,5 @@
 import { ContractTradeEvent } from "@/lib/types";
 import { TransactionRow } from "./TransactionRow";
-import { Suspense } from "react";
 const theads = [
   "-",
   "Version",
@@ -22,23 +21,21 @@ export const TransactionTable = ({
 }) => {
   if (!transactions) return null;
   return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <div className="max-h-[80vh] max-w-[70vw] overflow-y-auto custom-scrollbar">
-        <table className="table">
-          <thead>
-            <tr>
-              {theads.map((thead, index) => (
-                <th key={index}>{thead}</th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {transactions.map((trade, index) => (
-              <TransactionRow index={index} key={index} trade={trade} />
+    <div className="max-h-[80vh] max-w-[70vw] overflow-y-auto custom-scrollbar">
+      <table className="table">
+        <thead>
+          <tr>
+            {theads.map((thead, index) => (
+              <th key={index}>{thead}</th>
             ))}
-          </tbody>
-        </table>
-      </div>
-    </Suspense>
+          </tr>
+        </thead>
+        <tbody>
+          {transactions.map((trade, index) => (
+            <TransactionRow index={index} key={index} trade={trade} />
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };

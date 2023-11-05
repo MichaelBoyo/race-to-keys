@@ -4,6 +4,7 @@ import { buyKeys, sellKeys } from "@/lib/contract";
 import { User } from "@/lib/types";
 import { useState } from "react";
 import { FaArrowTrendUp, FaArrowTrendDown } from "react-icons/fa6";
+import DropDown from "./DropDown";
 
 type Props = {
   keySubjects: {
@@ -24,7 +25,7 @@ export const BuyAndSellClient = ({ keySubjects, user }: Props) => {
   };
 
   return (
-    <div className=" w-[30px] flex flex-col">
+    <div className="  flex flex-col items-center justify-center">
       <input
         value={amount}
         onChange={(e) => setAmount(Number(e.target.value))}
@@ -32,18 +33,25 @@ export const BuyAndSellClient = ({ keySubjects, user }: Props) => {
         placeholder="Type here"
         className="input input-bordered "
       />
-      <select
-        value={address}
-        onChange={(e) => setAddress(e.target.value)}
-        className="select "
-      >
-        <option disabled selected>
-          Pick your favorite Simpson
-        </option>
-        {keySubjects.map((address) => (
-          <option key={address.address}>{address.address}</option>
-        ))}
-      </select>
+      <DropDown />
+      <details className="dropdown">
+        <summary className="m-1 btn text-ellipsis overflow-hidden max-w-[100px]">
+          {address}
+        </summary>
+        <ul className="p-2  shadow menu dropdown-content z-[1] bg-base-100 rounded-box ">
+          {keySubjects.map((address) => (
+            <li
+              onClick={() => setAddress(address.address)}
+              key={address.address}
+            >
+              <p className="text-ellipsis overflow-hidden max-w-[100px]">
+                {address.address}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </details>
+
       <div className="flex gap-4">
         <button onClick={() => handleSubmit(true)} className="btn btn-accent">
           Buy
