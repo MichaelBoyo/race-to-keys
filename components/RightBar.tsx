@@ -8,7 +8,7 @@ const RightBar = async () => {
   const { user } = session;
   return (
     <div className="bg-base-100 min-w-[100px]">
-      <div id="end" className="flex gap-20 border-b  p-3">
+      <div id="end" className="flex gap-20  border-b h-[73px]  p-2">
         <p className="flex flex-col">
           Hello, <b>{user.username}</b>
         </p>

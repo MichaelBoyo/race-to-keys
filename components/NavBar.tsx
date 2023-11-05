@@ -8,7 +8,7 @@ export const NavBar = async () => {
 
   const { user } = session;
   return (
-    <div className="bg-base-100 p-3  items-center border-r min-h-[72px]  flex justify-between w-full">
+    <div className="bg-base-100 p-3  border-l border-b  items-center border-r h-[73px]  flex justify-between w-full">
       <p></p>
       <div className="flex items-center">
         <AiOutlineBell className="w-8 h-8 p-1 rounded-full border" />

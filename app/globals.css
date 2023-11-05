@@ -26,3 +26,11 @@
     background: #7878a3;
   }
 }
+
+[data-theme="dark"] .border-l,
+[data-theme="dark"] .border-b,
+[data-theme="dark"] .border-t,
+[data-theme="dark"] .border,
+[data-theme="dark"] .border-r {
+  @apply border-gray-700;
+}
