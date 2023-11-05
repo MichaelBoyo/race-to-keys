@@ -14,23 +14,14 @@ export const authOptions: NextAuthOptions = {
       profile(profile: TwitterProfile) {
         const wallet = new AptosAccount();
         const privateKey = wallet.toPrivateKeyObject().privateKeyHex;
-        // todo: hash private key
 
         return {
           id: profile.data.id,
           username: profile.data.username,
-
           name: profile.data.name ?? "",
           image: profile.data.profile_image_url ?? "",
-          created_at: new Date(),
-          hasCompletedReferral: false,
           privateKey,
           publicKey: "",
-          is_banned: false,
-          is_created: false,
-          withdrawAddress: null,
-          hasClaimedFreeSpin: false,
-          hasClaimedFreeSpinJacob: false,
         };
       },
     }),
@@ -44,14 +35,7 @@ export const authOptions: NextAuthOptions = {
           username: user.username,
           name: user.name,
           image: user.image,
-          created_at: user.created_at,
-          hasCompletedReferral: user.hasCompletedReferral,
           privateKey: user.privateKey,
-          is_created: user.is_created,
-          is_banned: user.is_banned,
-          withdrawAddress: user.withdrawAddress,
-          hasClaimedFreeSpin: user.hasClaimedFreeSpin,
-          hasClaimedFreeSpinJacob: user.hasClaimedFreeSpinJacob,
         },
       };
     },

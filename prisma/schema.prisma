@@ -40,34 +40,16 @@ model Session {
   @@map("session")
 }
 
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
-  @@map("verification_token")
-}
-
 model User {
-  id            String    @id @default(cuid())
-  email         String?   @unique
-  emailVerified DateTime? @map("email_verified")
-  username      String    @unique
-  name          String
-  image         String?
-  created_at    DateTime  @default(now())
-  privateKey    String
-  publicKey     String?
+  id    String  @id @default(cuid())
+  email String? @unique
 
-  withdrawAddress String?
+  username String  @unique
+  name     String
+  image    String?
 
-  hasCompletedReferral Boolean @default(false)
-  is_created           Boolean @default(false)
-  is_banned            Boolean @default(false)
-
-  hasClaimedFreeSpin      Boolean @default(false)
-  hasClaimedFreeSpinJacob Boolean @default(false)
+  privateKey String
+  publicKey  String?
 
   accounts Account[]
   sessions Session[]
