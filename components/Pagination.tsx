@@ -13,7 +13,7 @@ export const Pagination = ({ page, setPage, totalPages }: Props) => {
     }
   };
   return (
-    <div className="join border absolute bottom-0 left-0 rounded-lg">
+    <div className="join border p-1  rounded-lg">
       <button
         disabled={page === 1}
         onClick={() => handleCLick(true)}

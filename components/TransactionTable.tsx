@@ -28,10 +28,10 @@ export const TransactionTable = ({
 
   const totalPages = transactions.length / size;
   return (
-    <div className="h-full relative ">
+    <div className="h-full  flex flex-col justify-between ">
       <p className="font-semibold text-3xl">Transaction History</p>
 
-      <div className=" max-h-[80%] max-w-[70vw] overflow-y-auto custom-scrollbar">
+      <div className=" max-h-[45vh]  max-w-[70vw] overflow-y-auto custom-scrollbar">
         <table className="table">
           <thead>
             <tr>

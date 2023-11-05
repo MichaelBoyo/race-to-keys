@@ -11,7 +11,7 @@ const Dash = async () => {
   const tradeHist = await getTradeHistory();
 
   return (
-    <div className="p-2 h-full    flex-col justify-between">
+    <div className="p-2 h-full  flex  flex-col justify-between">
       <KeysCollection
         wallet_address={session?.user.wallet_address}
         addresses={kkeySubs.map((k) => k.address)}
