@@ -34,7 +34,6 @@ const Dash = async () => {
         wallet_address={wallerAddr}
         addresses={kkeySubs.map((k) => k.address)}
       />
-      {/* <TransactionTable transactions={tradeHist} /> */}
     </div>
   );
 };
