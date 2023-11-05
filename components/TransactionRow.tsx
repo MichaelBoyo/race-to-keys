@@ -27,9 +27,7 @@ export const TransactionRow = ({
       ))}
       {Object.entries(trade.data).map(([key, value]) => (
         <>
-          {excludeList.includes(key) ? (
-            <div key={key}></div>
-          ) : (
+          {excludeList.includes(key) ? null : (
             <td className="text-center " key={key}>
               {typeof value === "boolean" ? (
                 <>

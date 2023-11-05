@@ -7,6 +7,7 @@ export const ThemeSwitcher = () => {
     //@ts-ignore
     document.documentElement.getAttribute("data-theme") === "dark"
   );
+
   const handleClick = () => {
     setIsDark(!isDark);
   };
@@ -17,6 +18,9 @@ export const ThemeSwitcher = () => {
       isDark ? "light" : "dark"
     );
   }, [isDark]);
+  if (!document) {
+    return null;
+  }
   return (
     <button
       onClick={handleClick}
