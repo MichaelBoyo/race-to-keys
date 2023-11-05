@@ -15,26 +15,28 @@ const RightBar = async () => {
   const walletAddress = getWalletAddr(user.privateKey);
   return (
     <div className="bg-base-100 max-w-[300px] min-w-[100px] flex flex-col justify-between">
-      <div className="flex justify-between w-full  border-b h-[73px]  p-2">
-        <p className="flex flex-col">
-          Hello, <b>{user.name}</b>
-        </p>
-        <Image
-          className="rounded-lg"
-          width={50}
-          height={50}
-          src={user.image}
-          alt="user img"
+      <div className="w-full">
+        <div className="flex justify-between w-full  border-b h-[73px]  p-2">
+          <p className="flex flex-col">
+            Hello, <b>{user.name}</b>
+          </p>
+          <Image
+            className="rounded-lg"
+            width={50}
+            height={50}
+            src={user.image}
+            alt="user img"
+          />
+        </div>
+
+        <BuyAndSellClient
+          walletAddress={walletAddress}
+          user={user}
+          keySubjects={keySubs}
         />
       </div>
 
-      <BuyAndSellClient
-        walletAddress={walletAddress}
-        user={user}
-        keySubjects={keySubs}
-      />
-
-      <RecentTransactions />
+      {/* <RecentTransactions /> */}
 
       <FavouriteKeys
         wallet_address={walletAddress}
