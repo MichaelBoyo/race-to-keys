@@ -7,11 +7,7 @@ const Transactios = async () => {
   const session = await getSession();
   if (!session || !session.user) return redirect("/sign-in");
   const tradeHist = await getTradeHistory();
-  return (
-    <div>
-      <TransactionTable transactions={tradeHist} />
-    </div>
-  );
+  return <TransactionTable transactions={tradeHist} />;
 };
 
 export default Transactios;
