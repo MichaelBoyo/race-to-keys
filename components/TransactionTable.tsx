@@ -31,7 +31,7 @@ export const TransactionTable = ({
     <div className="h-full  flex flex-col justify-between gap-3 pt-5 ">
       <p className="font-semibold text-3xl ">Transactions</p>
 
-      <div className=" max-h-[77vh]  max-w-[70vw] overflow-y-auto custom-scrollbar">
+      <div className=" h-[77vh]  max-w-[70vw] overflow-y-auto custom-scrollbar">
         <table className="table">
           <thead>
             <tr>
